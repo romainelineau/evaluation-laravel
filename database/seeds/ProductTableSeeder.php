@@ -1,6 +1,7 @@
 <?php
 
 use App\Product;
+use App\Size;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -22,23 +23,6 @@ class ProductTableSeeder extends Seeder
             'name' => 'Femme'
         ]);
 
-        // Créaqtion des tailles
-        App\Size::create([
-            'name' => 'XS'
-        ]);
-        App\Size::create([
-            'name' => 'S'
-        ]);
-        App\Size::create([
-            'name' => 'M'
-        ]);
-        App\Size::create([
-            'name' => 'L'
-        ]);
-        App\Size::create([
-            'name' => 'XL'
-        ]);
-
         // Suppression des images avant renvoi des seeders
         Storage::disk('local')->delete(Storage::allFiles());
 
@@ -47,12 +31,7 @@ class ProductTableSeeder extends Seeder
             // Association à une catégorie
             $category = App\Category::find(rand(1,2)); // on récupère l'id random d'une catégorie
             $product->category()->associate($category); // pour chaque livre crée, on lui associe la catégorie avec l'id random
-
-            // Association à une taille
-            $size = App\Size::find(rand(1,5)); // on récupère l'id random d'une taille
-            $product->size()->associate($size); // pour chaque livre crée, on lui associe la taille avec l'id random
-
-            $product->save(); // sauvegarde de l'association pour faire persister en base
+            $product->save(); // Sauvegarde de l'association pour faire persister en base
 
             // Association à une image
             $link = Str::random(12) . '.jpg'; // hash du lien pour se protéger des injections de scripts
@@ -63,6 +42,10 @@ class ProductTableSeeder extends Seeder
             $product->picture()->create([
                 'link'  =>  $link
             ]);
+
+            // Association à une ou plusieurs tailles
+            $sizes = Size::pluck('id')->shuffle()->slice(0, rand(1,5))->all(); // on récupère les id des tailles dans un tableau
+            $product->sizes()->attach($sizes); // on attache les id des tailles dans la table de liaison
 
         });
     }
