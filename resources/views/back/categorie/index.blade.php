@@ -27,7 +27,6 @@
             <td>{{ $categorie->name }}</td>
             <td>
                 <a href="" class="btn btn-secondary" role="button">Modifier</a>
-                <a href="" class="btn btn-success" role="button">Voir</a>
                 <form class="delete" method="POST" action="">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}

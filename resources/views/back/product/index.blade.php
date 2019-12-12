@@ -5,12 +5,14 @@
 <h1 class="text-center m-4">Administration des produits</h1>
 
 <div class="d-flex justify-content-center m-4 pt-4">
-    <a class="btn btn-primary" href="" role="button">Ajouter un produit</a>
+    <a class="btn btn-primary" href="{{ route('produits.create') }}" role="button">Ajouter un produit</a>
 </div>
 
 <div class="d-flex justify-content-center m-4 pt-4">
     {{$products->links()}}
 </div>
+
+@include('back.product.partials.flash')
 
 <table class="table">
     <thead class="thead-light">
@@ -41,7 +43,6 @@
             </td>
             <td>
                 <a href="" class="btn btn-secondary" role="button">Modifier</a>
-                <a href="" class="btn btn-success" role="button">Voir</a>
                 <form class="delete" method="POST" action="">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}

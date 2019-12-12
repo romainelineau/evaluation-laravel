@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable = [
+        'name', 'description', 'price', 'visible', 'status', 'reference', 'category_id'
+    ];
+
     public function picture() {
         return $this->hasOne(Picture::class);
     }

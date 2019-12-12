@@ -7,7 +7,7 @@
     <div class="col-12">{{ $products->total() }} résultat(s)</div>
     @forelse ($products as $product)
     <div class="col-4">
-        <img src="{{ asset('images/' . $product->picture->link) }}">
+        <img src="{{ asset('images/' . $product->picture['link']) }}">
     <h2><a href="{{ url('produit', $product->id) }}">{{ $product->name }}</a></h2>
         <a href="#">{{ $product->category->name }}</a>
         <p>{{ $product->price }}</p>

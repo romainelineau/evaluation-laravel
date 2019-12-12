@@ -12,7 +12,10 @@ class FrontController extends Controller
     {
         // injection de données à une vue partielle
         view()->composer('partials.menu', function ($view) {
-            $categoriesMenu = Category::pluck('name', 'id')->all(); // on récupère un tableau de type [1=>'femme', 2=>'homme']
+            $categoriesMenu = Category::pluck('name', 'id')->all(); // on récupère un tableau de type [2=>'femme', 1=>'homme']
+
+            ksort($categoriesMenu); // on remet le tableau dans l'ordre en fonction de l'id et non du name
+
             $view->with('categoriesMenu', $categoriesMenu);
         });
     }

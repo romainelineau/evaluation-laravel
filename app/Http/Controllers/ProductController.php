@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Size;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -26,7 +28,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        //Récupération du tableau des tailles
+        $sizes = Size::pluck('name', 'id')->all();
+        // Récupération du tableau des catégories
+        $categories = Category::pluck('name', 'id')->all();
+        ksort($categories); // on tri le tableau avec l'id
+
+        return view('back.product.create', ['sizes' => $sizes, 'categories' => $categories]);
     }
 
     /**
@@ -37,7 +45,35 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation des données saisies
+        // Si incorrectes, redirection vers la page de création de formulaire
+        $this->validate($request, [
+            'name'  =>  'required|string|between:5,100',
+            'description'   =>  'required|string',
+            'price' =>  'required|regex:/^([0-9]+)(\.[0-9]{2}){0,1}$/',
+            'visible' =>  'required|in:published,unpublished',
+            'status' =>  'required|in:sale,standard',
+            'reference' =>  'required|alpha_num|size:16',
+            'category_id' =>  'required|integer',
+            'sizes' => 'required|array',
+            'sizes.*' => 'integer',
+            'picture' => 'required|file|image'
+        ]);
+
+        // Insertion dans la table produit
+        $product = Product::create($request->all());
+
+        // Insertion dans la table sizes
+        $product->sizes()->attach($request->sizes);
+
+        // Insertion dans la table picture
+        $link = $request->file('picture')->store('');
+        $product->picture()->create([
+            'link' => $link
+        ]);
+
+        // Si tout est ok, redirection vers la page admin produits avec message de succès
+        return redirect()->route('produits.index')->with('message', 'Produit ajouté avec succès !');
     }
 
     /**
