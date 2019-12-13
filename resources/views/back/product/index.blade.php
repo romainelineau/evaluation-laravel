@@ -43,7 +43,7 @@
             </td>
             <td>
                 <a href="{{ route('produits.edit', $product->id) }}" class="btn btn-secondary" role="button">Modifier</a>
-                <form class="delete" method="POST" action="">
+                <form class="delete" method="POST" action="{{route('produits.destroy', $product->id)}}">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <button type="submit" class="btn btn-danger" role="button">Supprimer</button>
