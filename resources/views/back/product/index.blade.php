@@ -42,7 +42,7 @@
                 @endif
             </td>
             <td>
-                <a href="" class="btn btn-secondary" role="button">Modifier</a>
+                <a href="{{ route('produits.edit', $product->id) }}" class="btn btn-secondary" role="button">Modifier</a>
                 <form class="delete" method="POST" action="">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}

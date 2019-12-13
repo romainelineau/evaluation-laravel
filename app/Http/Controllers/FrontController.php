@@ -22,7 +22,7 @@ class FrontController extends Controller
 
     // retourne tous les produits
     public function index() {
-        $products = Product::paginate(6);
+        $products = Product::where('visible', 'like', 'published')->paginate(6);
 
         return view('front.index', ['products' => $products]);
     }
@@ -36,14 +36,14 @@ class FrontController extends Controller
 
     // retourne tous les produits en solde
     public function showSalesProduct() {
-        $products = Product::where('status', 'like', 'sale')->paginate(6);
+        $products = Product::where('visible', 'like', 'published')->where('status', 'like', 'sale')->paginate(6);
 
         return view('front.sale', ['products' => $products]);
     }
 
     // retourne un produit en fonction de son identifiant
     public function showProductByCategory(int $id) {
-        $products =  Category::find($id)->product()->paginate(5); // retourne les produits d'une catégorie en fonction de son identifiant
+        $products =  Category::find($id)->product()->where('visible', 'like', 'published')->paginate(6); // retourne les produits d'une catégorie en fonction de son identifiant
         $category = Category::find($id);
 
         return view('front.category', [
