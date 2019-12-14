@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Category;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -22,7 +23,13 @@ class FrontController extends Controller
 
     // retourne tous les produits
     public function index() {
-        $products = Product::where('visible', 'like', 'published')->paginate(6);
+
+        $prefix = request()->page?? 'home';
+        $path = 'product' . $prefix;
+
+        $products = Cache::remember($path, 60*24, function () {
+            return Product::where('visible', 'like', 'published')->paginate(6);
+        });
 
         return view('front.index', ['products' => $products]);
     }

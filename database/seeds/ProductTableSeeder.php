@@ -35,7 +35,7 @@ class ProductTableSeeder extends Seeder
 
             // Association à une image
             $link = Str::random(12) . '.jpg'; // hash du lien pour se protéger des injections de scripts
-            $file = file_get_contents('https://picsum.photos/id/'.rand(1, 9).'/250/250/'); // récupération du flux
+            $file = file_get_contents('https://picsum.photos/id/'.rand(1, 9).'/511/639/'); // récupération du flux
             Storage::disk('local')->put($link, $file);
 
             // Enregistrement dans la table pictures, book_id crée automatiquement
