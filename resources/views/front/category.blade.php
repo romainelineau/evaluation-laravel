@@ -11,7 +11,7 @@
     </div>
     @forelse ($products as $product)
     <div class="col-12 col-sm-6 col-md-4 p-4">
-        <div class="card h-100 p-0 rounded-lg border-0 shadow-sm">
+        <div class="card card-front h-100 p-0 rounded-lg border-0 shadow-sm">
             <a class="text-decoration-none" href="{{ url('produit', $product->id) }}">
                 <img class="card-img-top" src="{{ asset('images/' . $product->picture['link']) }}">
                 <div class="card-body">

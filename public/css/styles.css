@@ -38,13 +38,13 @@ main > .row > .col > h1 {
 main > .row > .col > h1 span {
     color: #66EB9A;
 }
-main .card {
+main .card-front {
     position: relative;
     top: 0;
     overflow: hidden;
     transition: all .3s;
 }
-main .card:hover {
+main .card-front:hover {
     top: -10px;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1) !important;
     transition: all .3s;
