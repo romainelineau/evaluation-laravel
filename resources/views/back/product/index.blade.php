@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 
@@ -31,7 +31,7 @@
             <th scope="row">{{ $product->id }}</th>
             <td>{{ $product->name }}</td>
             <td>{{ ucfirst($product->category->name?? 'Aucune catégorie') }}</td>
-            <td>{{ $product->price }}</td>
+            <td>{{ $product->price }} €</td>
             <td>
                 @if($product->visible == 'published')
                 <span class="badge badge-success p-1">Publié</span>

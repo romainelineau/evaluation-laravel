@@ -1,0 +1,180 @@
+/*
+/* - - - NAV HEADER  - - -
+*/
+.navbar.navbar-light .navbar-brand {
+    color: #66EB9A;
+    font-size: 1.5em;
+}
+.navbar.navbar-light a.nav-link {
+    color: rgba(0,0,0,0.75);
+    padding-left: 25px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: all .3s;
+}
+.navbar.navbar-light a.nav-link:hover {
+    color: #66EB9A;
+    transition: all .3s;
+}
+.navbar.navbar-light .navbar-nav.ml-auto a {
+    font-size: 0.75em;
+    color: rgba(0,0,0,0.25);
+}
+.navbar.navbar-light .navbar-nav.ml-auto a:hover {
+    color: rgba(0,0,0,0.5);
+}
+.navbar-light .navbar-toggler {
+    border: none;
+}
+/*
+/* - - - MAIN  - - -
+*/
+main > .row > .col > h1 {
+    font-size: 1em;
+    letter-spacing: 0.1em;
+}
+main > .row > .col > h1 span {
+    color: #66EB9A;
+}
+main .card {
+    position: relative;
+    top: 0;
+    overflow: hidden;
+    transition: all .3s;
+}
+main .card:hover {
+    top: -10px;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1) !important;
+    transition: all .3s;
+}
+main .card .card-body span {
+    background: #66EB9A;
+}
+main .card .card-title {
+    font-size: 1.25em;
+    color: rgba(0,0,0,0.75);
+}
+main .card .card-text {
+    font-size: 1.5em;
+    color: rgba(0,0,0,0.75);
+}
+.page-link {
+    color: rgba(0,0,0,0.75);
+    background: none;
+    border: none;
+}
+.page-link:hover {
+    color: rgba(0,0,0,0.75);
+    border: none;
+    border-radius: 5px;
+}
+.page-item.active .page-link {
+    background: #66EB9A;
+    border: none;
+    border-radius: 5px;
+}
+.page-item.disabled .page-link {
+    background: none;
+    border: none;
+}
+.page-item:first-child .page-link:hover,
+.page-item:last-child .page-link:hover {
+    background: none;
+}
+.color-green {
+    color: #66EB9A !important;
+}
+/*
+/* - - - PAGE PRODUCT  - - -
+*/
+.page-product .btn {
+    border-radius: 50px;
+    border-color: #66EB9A;
+    transition: all .3s;
+}
+.page-product .btn-primary {
+    background: #66EB9A;
+}
+.page-product .btn-primary:hover,
+.page-product .btn-primary:active,
+.page-product .btn-primary:focus {
+    background: #55c680 !important;
+    border-color: #55c680 !important;
+    box-shadow: none !important;
+    transition: all .3s;
+}
+.page-product .btn-outline-primary {
+    color: #66EB9A;
+}
+.page-product .btn-outline-primary:hover,
+.page-product .btn-outline-primary:active,
+.page-product .btn-outline-primary:focus {
+    color: #55c680 !important;
+    background: none !important;
+    border-color: #55c680 !important;
+    box-shadow: none !important;
+    transition: all .3s;
+}
+.page-product .card {
+    position: initial;
+    transition: initial;
+}
+.page-product .card:hover {
+    box-shadow: none !important;
+    transition: initial;
+}
+.page-product .card-header h2 {
+    font-size: 0.9em;
+    letter-spacing: 0.1em;
+}
+.page-product .card-body {
+    color: rgba(0,0,0,0.75);
+}
+.page-product .card-product .size-span {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-width: 35px;
+}
+.page-product .card-product .card-text {
+    font-size: 2em !important;
+}
+.page-product .card-product-category a {
+    color: rgba(0,0,0,0.75);
+    text-decoration: underline;
+    transition: all .3s;
+}
+.page-product .card-product-category a:hover {
+    color: rgba(0,0,0,1);
+    transition: all .3s;
+}
+.page-product .card-description .card-text {
+    font-size: 1em;
+}
+
+/*
+/* - - - NAV FOOTER  - - -
+*/
+footer h3 {
+    font-size: 1em;
+    letter-spacing: 0.15em;
+    color: #66EB9A;
+}
+footer.navbar.navbar-light a.nav-link {
+    text-transform: initial;
+    font-weight: normal;
+}
+footer .row {
+    margin: 0 !important;
+}
+footer i {
+    font-size: 1.75em;
+    color: rgba(0,0,0,0.25);
+    transition: all 0.3s;
+}
+footer i:hover {
+    color: #66EB9A;
+    transition: all 0.3s;
+}
