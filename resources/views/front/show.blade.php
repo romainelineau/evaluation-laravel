@@ -20,12 +20,27 @@
                         <span class="badge badge-danger">En solde</span>
                         @endif
                         <p class="card-text mt-1">{{ $product->price }} <sup>€</sup></p>
-                        <p><i class="fas fa-tags"></i> Tailles disponibles :
-                            @forelse ($product->sizes as $size)<span class="size-span d-inline-block text-center px-2 py-1 mx-1">{{ $size->name }}</span>@empty
-                            Aucune taille disponible
-                            @endforelse
-                        </p>
-                        <button class="btn btn-primary font-weight-bold mb-3"><i class="fas fa-shopping-bag"></i> Ajouter au panier</button>
+                        <form>
+                            <p class="d-block d-md-inline-block"><i class="fas fa-tags"></i> Tailles disponibles :</p>
+                            <p class="d-block d-md-inline-block">
+                                @forelse ($sizesProduct as $sizeProduct)<span class="size-span d-inline-block text-center px-2 py-1 mx-1">{{ $sizeProduct }}</span>@empty
+                                Aucune taille disponible
+                                @endforelse
+                            </p>
+                            <div class="form-row align-items-center">
+                                <div class="col-auto mb-1">
+                                    <select class="custom-select" id="inlineFormCustomSelect">
+                                        <option selected>Choisissez votre taille...</option>
+                                        @forelse ($sizesProduct as $sizeProduct)
+                                        <option value="{{ $sizeProduct }}">{{ $sizeProduct }}</option>
+                                        @empty
+                                        Aucune taille disponible
+                                        @endforelse
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary font-weight-bold my-3"><i class="fas fa-shopping-bag"></i> Acheter</button>
+                        </form>
                     </div>
                     <div class="card-footer">
                         <p class="card-product-category m-0"><i class="fas fa-globe"></i> <a href="/categorie/{{ $product->category->id }}" class="">Consulter d'autres produits pour {{ $product->category->name }}</a></p>

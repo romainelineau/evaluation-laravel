@@ -14,10 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // retourne les catégories ajoutées
         $categories = Category::paginate(5);
 
         return view('back.categorie.index', ['categories' => $categories]);
-        // return "dashboard";
     }
 
     /**

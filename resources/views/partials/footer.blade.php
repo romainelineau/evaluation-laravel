@@ -1,6 +1,11 @@
 <footer class="navbar navbar-expand-md navbar-light border-top">
     <div class="container py-5">
         <div class="row w-100">
+            @if (Route::is('produits.*') || Route::is('categories.*') || Route::is('login'))
+            <div class="col-12">
+                <h3 class="text-uppercase font-weight-bold w-100 text-center">Admin We Fashion © {{ date("Y") }}</h3>
+            </div>
+            @else
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex flex-wrap justify-content-center justify-content-md-start">
                 <h3 class="text-uppercase font-weight-bold w-100 text-center text-md-left">Informations</h3>
                 <ul class="navbar-nav">
@@ -26,6 +31,7 @@
                 <a class="pr-4" href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fas fa-envelope"></i></a>
             </div>
+            @endif
         </div>
     </div>
 </footer>

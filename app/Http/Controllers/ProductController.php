@@ -17,7 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(5);
+        // retourne les derniers produits
+        $products = Product::orderBy('id', 'desc')->paginate(15);
 
         return view('back.product.index', ['products' => $products]);
     }
@@ -31,6 +32,7 @@ class ProductController extends Controller
     {
         //Récupération du tableau des tailles
         $sizes = Size::pluck('name', 'id')->all();
+
         // Récupération du tableau des catégories
         $categories = Category::pluck('name', 'id')->all();
         ksort($categories); // on tri le tableau avec l'id
@@ -70,13 +72,14 @@ class ProductController extends Controller
         // Insertion dans la table picture
         // Méthode store pour retourner un hash sécurisé
         $link = $request->file('picture')->store('');
+
         // Insertion dans la table pictures
         $product->picture()->create([
             'link' => $link
         ]);
 
         // Si tout est ok, redirection vers la page admin produits avec message de succès
-        return redirect()->route('produits.index')->with('message', 'Produit ajouté avec succès !');
+        return redirect()->route('produits.index')->with('message', 'Produit ajouté !');
     }
 
     /**
@@ -100,8 +103,10 @@ class ProductController extends Controller
     {
         // Récupération du produit
         $product = Product::find($id);
+
         //Récupération du tableau des tailles
         $sizes = Size::pluck('name', 'id')->all();
+
         // Récupération du tableau des catégories
         $categories = Category::pluck('name', 'id')->all();
         ksort($categories); // on tri le tableau avec l'id
@@ -118,6 +123,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Validation des données saisies
+        // Si incorrectes, redirection vers la page de création de formulaire
         $this->validate($request, [
             'name'  =>  'required|string|between:5,100',
             'description'   =>  'required|string',
@@ -130,10 +137,12 @@ class ProductController extends Controller
             'sizes.*' => 'integer'
         ]);
 
+        // Récupération du produit en fonction de son id
+        // et mise à jour des données dans la table
         $product = Product::find($id);
-
         $product->update($request->all());
 
+        // On associe les nouvelles tailles au produit
         $product->sizes()->sync($request->sizes);
 
         // On vérifie sur l'utilisateur a chargé une nouvelle image
@@ -150,13 +159,14 @@ class ProductController extends Controller
 
             // Retourne un hash sécurisé
             $link = $request->file('picture')->store('');
+
             // Mise à jour dans la table pictures
             $product->picture()->update([
                 'link' => $link
             ]);
         }
 
-        return redirect()->route('produits.index')->with('message', 'Livre mis à jour avec succès !');
+        return redirect()->route('produits.index')->with('message', 'Produit mis à jour !');
     }
 
     /**
@@ -167,11 +177,15 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        // On récupère le produit en fonction de son id
         $product = Product::find($id);
 
+        // S'il y a une image associée au produit, on la supprime
         if(!empty($product->picture['link'])) {
-            Storage::disk('local')->delete($product->picture['link']); // supprimer physiquement l'image
+            Storage::disk('local')->delete($product->picture['link']); // suppression physique de l'image
         }
+
+        // on supprime le produit
         $product->delete();
 
         return redirect()->route('produits.index')->with('message', 'Produit supprimé !');

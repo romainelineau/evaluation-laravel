@@ -15,7 +15,7 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
-        // Créaqtion des catégories
+        // Création des catégories
         App\Category::create([
             'name' => 'Homme',
         ]);
@@ -35,10 +35,8 @@ class ProductTableSeeder extends Seeder
 
             // Association à une image
             $urlPicture = Str::random(12) . '.jpg'; // hash du lien pour se protéger des injections de scripts
-            $file = Storage::disk('public')->get('images/' . $categoryProduct->id . '/' . rand(1,10) . '.jpg');
-            // $file = file_get_contents(asset('images/images_product/' . $category->id . '/' . rand(1,10) . '.jpg'));
-            // $file = file_get_contents('https://picsum.photos/id/'.rand(1, 9).'/511/639/'); // récupération du flux
-            Storage::disk('local')->put($urlPicture, $file);
+            $file = Storage::disk('public')->get('images/' . $categoryProduct->id . '/' . rand(1,10) . '.jpg'); // récupération du flux
+            Storage::disk('local')->put($urlPicture, $file); // enregistrement physique de l'image
 
             // Enregistrement dans la table pictures, book_id crée automatiquement
             $product->picture()->create([

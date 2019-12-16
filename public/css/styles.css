@@ -22,6 +22,9 @@
     font-size: 0.75em;
     color: rgba(0,0,0,0.25);
 }
+.navbar.navbar-light .navbar-nav.ml-auto a i {
+    font-size: 1.75em;
+}
 .navbar.navbar-light .navbar-nav.ml-auto a:hover {
     color: rgba(0,0,0,0.5);
 }
@@ -89,17 +92,22 @@ main .card .card-text {
 /*
 /* - - - PAGE PRODUCT  - - -
 */
-.page-product .btn {
+.page-product .btn,
+.btn-add-admin {
     border-radius: 50px;
     border-color: #66EB9A;
     transition: all .3s;
 }
-.page-product .btn-primary {
+.page-product .btn-primary,
+.btn-add-admin {
     background: #66EB9A;
 }
 .page-product .btn-primary:hover,
 .page-product .btn-primary:active,
-.page-product .btn-primary:focus {
+.page-product .btn-primary:focus,
+.btn-add-admin:hover,
+.btn-add-admin:active,
+.btn-add-admin:focus-within {
     background: #55c680 !important;
     border-color: #55c680 !important;
     box-shadow: none !important;
@@ -177,4 +185,18 @@ footer i {
 footer i:hover {
     color: #66EB9A;
     transition: all 0.3s;
+}
+/*
+/* - - - ADMIN  - - -
+*/
+.table-actions-admin a {
+    color: rgb(21, 224, 140);
+}
+.table-actions-admin button {
+    color: rgb(175, 175, 175);
+    background: none;
+    border: none;
+}
+.table-actions-admin button:hover {
+    text-decoration: underline;
 }
